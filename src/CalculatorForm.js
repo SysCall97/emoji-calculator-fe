@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const CalculatorForm = () => {
+    const options = {
+        "👽": "+",
+        "💀": "-",
+        "👻": "*",
+        "😱": "/"
+    }
+    const emojis = Object.keys(options);
+    const [input1, setInput1] = useState(0);
+    const [input2, setInput2] = useState(0);
+    const [result, setResult] = useState(0);
+    const [operation, setOperation] = useState("+");
+
+    useEffect(() => {
+        setResult(input1 + input2);
+    }, [input1, input2]);
     return (
         <div>
-            This is calculator form
+            <input type="number" value={input1} onInput={ e => setInput1(Number(e.target.value))} />
+            <select value={operation} onChange={ e => setOperation(e.target.value) }>
+                {
+                    emojis.map((emoji, index) => <option key={index} value={options[emoji]}> {emoji} </option>)
+                }
+            </select>
+            <input type="number" value={input2} onInput={ e => setInput2(Number(e.target.value))} />
+            <p>
+                {result}
+            </p>
         </div>
     );
 };
