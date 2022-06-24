@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const CalculatorForm = () => {
     const options = {
@@ -12,10 +12,28 @@ const CalculatorForm = () => {
     const [input2, setInput2] = useState(0);
     const [result, setResult] = useState(0);
     const [operation, setOperation] = useState("+");
-
-    useEffect(() => {
-        setResult(input1 + input2);
-    }, [input1, input2]);
+    const handleCalculate = () => {
+        let val;
+        switch(operation) {
+            case "+": {
+                val = input1 + input2;
+                break;
+            }
+            case "-": {
+                val = input1 - input2;
+                break;
+            }
+            case "*": {
+                val = input1 * input2;
+                break;
+            }
+            case "/": {
+                val = input1 / input2;
+                break;
+            }
+        }
+        setResult(val);
+    }
     return (
         <div>
             <input type="number" value={input1} onInput={ e => setInput1(Number(e.target.value))} />
@@ -25,6 +43,7 @@ const CalculatorForm = () => {
                 }
             </select>
             <input type="number" value={input2} onInput={ e => setInput2(Number(e.target.value))} />
+            <button onClick={handleCalculate}>Calculate</button>
             <p>
                 {result}
             </p>
