@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CalculatorForm.css'
 
 const CalculatorForm = () => {
     const options = {
@@ -34,33 +35,45 @@ const CalculatorForm = () => {
                 else val = input1 / input2;
                 break;
             }
+            default: {
+                break;
+            }
         }
         setResult(val);
     }
 
     return (
-        <div className='formWrapper'>
-            <input type="number" value={input1} onInput={ e => setInput1(Number(e.target.value))} />
-            <select value={operation} onChange={ e => setOperation(e.target.value) }>
+        <div className='container'>
+            <div className='formWrapper'>
+                <div>
+                    <input type="number" value={input1} onInput={ e => setInput1(Number(e.target.value))} />
+                </div>
+                <div>
+                    <select value={operation} onChange={ e => setOperation(e.target.value) }>
+                        {
+                            emojis.map((emoji, index) => <option key={index} value={options[emoji]}> {emoji} </option>)
+                        }
+                    </select>
+                </div>
+                <div>
+                    <input type="number" value={input2} onInput={ e => setInput2(Number(e.target.value))} />
+                </div>
+                <div>
+                    <button onClick={handleCalculate}>Calculate</button>
+                </div>
+            </div>
+            <div className='resultArea'>
                 {
-                    emojis.map((emoji, index) => <option key={index} value={options[emoji]}> {emoji} </option>)
+                    !isDivisionByZeroErrorOccured &&
+                    <p> Result: {result} </p>
                 }
-            </select>
-            <input type="number" value={input2} onInput={ e => setInput2(Number(e.target.value))} />
-            {
-                isDivisionByZeroErrorOccured && 
-                <p style={{color: "red"}}>
-                    *Cannot divide by zero
-                </p>
-            }
-            <button onClick={handleCalculate}>Calculate</button>
-            {
-                !isDivisionByZeroErrorOccured &&
-                <p>
-                    {result}
-                </p>
-            }
-            
+                {
+                        isDivisionByZeroErrorOccured && 
+                        <p className='errorMsg'>
+                            *Cannot divide by zero
+                        </p>
+                }
+            </div>
         </div>
     );
 };
