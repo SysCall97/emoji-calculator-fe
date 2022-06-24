@@ -26,7 +26,7 @@ const CalculatorForm = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({input1, input2, operation})
-        }).then(async res => {
+        }).then(res => {
             status = res.status;
             return res.json();
         }).then(data => {
