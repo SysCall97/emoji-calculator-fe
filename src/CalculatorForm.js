@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import './CalculatorForm.css'
+import Input from './Input';
+import Select from './Select';
+import './CalculatorForm.css';
+import ShowResult from './ShowResult';
 
 const CalculatorForm = () => {
     const options = {
@@ -42,37 +45,14 @@ const CalculatorForm = () => {
     return (
         <div className='container'>
             <div className='formWrapper'>
-                <div>
-                    <input type="number" value={input1} onInput={ e => setInput1(Number(e.target.value))} />
-                </div>
-                <div>
-                    <select value={operation} onChange={ e => setOperation(e.target.value) }>
-                        {
-                            emojis.map((emoji, index) => <option key={index} value={options[emoji]}> {emoji} </option>)
-                        }
-                    </select>
-                </div>
-                <div>
-                    <input type="number" value={input2} onInput={ e => setInput2(Number(e.target.value))} />
-                </div>
+                <Input type="number" val={input1} setInput={setInput1} />
+                <Select val={operation} setVal={setOperation} emojis={emojis} options={options} />
+                <Input type="number" val={input2} setInput={setInput2} />
                 <div>
                     <button onClick={handleCalculate}>Calculate</button>
                 </div>
             </div>
-            <div className='resultArea'>
-                {
-                    !isError &&
-                    <p> Result: {result} </p>
-                }
-                {
-                        isError && 
-                        <ul className='errorMsg'>
-                            {
-                                errorList.map((err, ind) => <li key={ind}>{err}</li>)
-                            }
-                        </ul>
-                }
-            </div>
+            <ShowResult isError={isError} result={result} errorList={errorList} />
         </div>
     );
 };
