@@ -39,7 +39,7 @@ const CalculatorForm = () => {
     }
 
     return (
-        <div>
+        <div className='formWrapper'>
             <input type="number" value={input1} onInput={ e => setInput1(Number(e.target.value))} />
             <select value={operation} onChange={ e => setOperation(e.target.value) }>
                 {
