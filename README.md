@@ -1,22 +1,35 @@
 # Emoji Calculator Frontend
 
 ## Installation
- Step-1: 
+ Step-1: <br/>
+ Run the command to clone the repository:
 ```bash
- $ git clone https://github.com/SysCall97/emoji-calculator-fe.git
+git clone https://github.com/SysCall97/emoji-calculator-fe.git
 ```
- Step-2:
+Step-2:<br/>
+ Checkout to ``Development`` branch
  ```bash
- $ npm install
+ git checkout Development
+ ```
+ Step-3:<br/>
+ Install the dependencies
+ ```bash
+npm install
 ```
-Step-3:<br/>
+Step-4:<br/>
 Setup and run laravel backend from 
 ```bash
 https://github.com/SysCall97/emoji-calculator-be
 ```
- Step-4:
+ Step-5:<br/>
+ Start the application by running the following command
  ```bash
- $ npm start
+npm start
+```
+Step-6:<br/>
+You can access the application from
+ ```bash
+http://localhost:3000
 ```
 
 ## Technology used
