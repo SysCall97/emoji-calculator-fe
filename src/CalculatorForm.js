@@ -35,9 +35,9 @@ const CalculatorForm = () => {
                 setErrorList([])
                 setResult(data.data);
             } else {
-                const errors = Object.values(data.errors).map(item => item[0]);
+                const errors = Object.values(data.errors).map(item => item);
                 setIsError(true);
-                setErrorList(errors);
+                setErrorList(errors.flat(Infinity));
             }
         });
     }
